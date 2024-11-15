@@ -1,0 +1,38 @@
+{
+  "name": "seo-info",
+  "version": "1.0.0",
+  "description": "An SEO Analyzer for Single Page Applications (SPAs)",
+  "main": "src/index.js",
+  "bin": {
+    "seo-info": "./bin/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node tests/test.js"
+  },
+  "keywords": [
+    "seo",
+    "spa",
+    "analyzer",
+    "javascript",
+    "jsdom",
+    "lighthouse",
+    "puppeteer",
+    "axe-core",
+    "cli"
+  ],
+  "author": "krikera",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.0.0",
+    "axe-core": "^4.4.1",
+    "chrome-launcher": "^0.15.0",
+    "ejs": "^3.1.7",
+    "jsdom": "^20.0.0",
+    "lighthouse": "^10.0.0",
+    "path": "^0.12.7",
+    "pdfkit": "^0.13.0",
+    "puppeteer": "^19.0.0",
+    "yargs": "^17.4.0"
+  }
+}

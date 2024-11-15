@@ -1,0 +1,12 @@
+{
+  "imageSizeLimit": 150000,
+  "timeout": 60000,
+  "thresholds": {
+    "largeImageSize": 150000,
+    "totalJsSize": 750000,
+    "ssrContentLengthThreshold": 2000,
+    "lazyLoadDelay": 1500
+  },
+  "reportFormat": "html",
+  "outputPath": "./reports/seo-report"
+}

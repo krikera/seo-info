@@ -1,0 +1,59 @@
+{
+  "title": "Test Page",
+  "description": "This is a test page",
+  "keywords": "test, sample",
+  "openGraph": {
+    "og:title": "Test Page"
+  },
+  "robotsTxt": "Not Found",
+  "sitemapXml": "Not Found",
+  "headings": {
+    "h1": [
+      "Main Heading"
+    ],
+    "h2": [
+      "Subheading"
+    ],
+    "h3": [
+      "Sub-subheading"
+    ],
+    "h4": [],
+    "h5": [],
+    "h6": []
+  },
+  "images": [
+    {
+      "src": "https://via.placeholder.com/150",
+      "alt": "Test Image",
+      "fileSize": 1088,
+      "format": ""
+    }
+  ],
+  "largeImages": [],
+  "canonicalLink": "https://example.com/test-page",
+  "urlStructure": "/",
+  "jsCrawlabilityIssues": false,
+  "performanceMetrics": {
+    "FCP": 834.0825000000001,
+    "LCP": 834.0825000000001,
+    "TBT": 0,
+    "performanceScore": 100
+  },
+  "mobileFriendliness": {
+    "isResponsive": true
+  },
+  "accessibilityIssues": [],
+  "csrSsrDetection": {
+    "isSSR": true,
+    "isCSR": false,
+    "recommendation": "Site appears to be using SSR effectively."
+  },
+  "lazyLoadingIssues": {
+    "lazyLoadedImages": []
+  },
+  "jsDependencies": {
+    "jsFiles": [],
+    "totalJsSize": 0,
+    "recommendation": "JavaScript size is within acceptable limits."
+  }
+}

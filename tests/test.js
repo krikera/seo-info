@@ -35,15 +35,18 @@ import assert from 'assert';
   try {
     const results = await analyzeSEO(htmlContent, baseUrl, options);
 
+    // Log the results to inspect the structure
+    console.log('AnalyzeSEO Results:', results);
+
     // Basic assertions
     assert.strictEqual(results.title, 'Test Page', 'Title mismatch');
     assert.strictEqual(results.description, 'This is a test page', 'Description mismatch');
     assert.strictEqual(results.keywords, 'test, sample', 'Keywords mismatch');
 
-    // Check images
-    assert.strictEqual(results.images.images.length, 1, 'Incorrect number of images');
+    // Adjusted image assertions based on actual structure
+    assert.strictEqual(results.images.length, 1, 'Incorrect number of images');
     assert.strictEqual(
-      results.images.images[0].alt,
+      results.images[0].alt,
       'Test Image',
       'Image alt text mismatch'
     );
@@ -63,5 +66,6 @@ import assert from 'assert';
     console.log('All tests passed!');
   } catch (error) {
     console.error('Test failed:', error.message);
+    console.error(error);
   }
 })();

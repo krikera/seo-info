@@ -42,3 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 - N/A (Initial Release)
+
+## [1.0.1] - 2024-11-16
+
+### Updated
+
+- Dependencies

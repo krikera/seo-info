@@ -2,12 +2,12 @@ import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import path from 'path';
 import lighthouse from 'lighthouse';
-import chromeLauncher from 'chrome-launcher';
+import * as chromeLauncher from 'chrome-launcher';
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import PDFDocument from 'pdfkit';
 import ejs from 'ejs';
-
+import axe from 'axe-core';
 export async function analyzeSEO(htmlContent, baseUrl, options = {}) {
 
   const defaultOptions = {
@@ -217,6 +217,9 @@ async function performAccessibilityAudit(url, timeout) {
   }
   return accessibilityIssues;
 }
+
+
+
 
 async function detectCSRorSSR(url, options) {
   let detection = {};

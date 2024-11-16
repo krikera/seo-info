@@ -1,6 +1,6 @@
 {
   "name": "seo-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An SEO Analyzer for Single Page Applications (SPAs)",
   "main": "src/index.js",
   "bin": {
@@ -23,6 +23,14 @@
   ],
   "author": "krikera",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krikera/seo-info.git"
+  },
+  "homepage": "https://github.com/krikera/seo-info#readme",
+  "bugs": {
+    "url": "https://github.com/krikera/seo-info/issues"
+  },
   "dependencies": {
     "axe-core": "^4.10.2",
     "axios": "^1.7.7",

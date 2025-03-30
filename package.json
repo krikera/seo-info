@@ -44,7 +44,7 @@
     "ora": "^8.2.0",
     "path": "^0.12.7",
     "pdfkit": "^0.14.0",
-    "puppeteer": "^21.6.1",
+    "puppeteer": "^24.2.0",
     "yargs": "^17.7.2"
   },
   "engines": {

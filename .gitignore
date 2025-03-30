@@ -41,3 +41,4 @@ coverage/
 # Testing output
 coverage/
 .nyc_output/
+.qodo

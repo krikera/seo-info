@@ -8,5 +8,15 @@
     "lazyLoadDelay": 1500
   },
   "reportFormat": "html",
-  "outputPath": "./reports/seo-report"
+  "outputPath": "./reports/seo-report",
+  "advancedAnalysis": true,
+  "targetKeywords": [
+    "seo",
+    "analysis",
+    "optimization",
+    "website"
+  ],
+  "maxImageSize": 150,
+  "minWords": 300,
+  "maxJsSize": 750
 }

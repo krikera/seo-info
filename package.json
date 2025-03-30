@@ -1,6 +1,6 @@
 {
   "name": "seo-info",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An SEO Analyzer for Single Page Applications (SPAs)",
   "main": "src/index.js",
   "bin": {
@@ -8,7 +8,8 @@
   },
   "type": "module",
   "scripts": {
-    "test": "node tests/test.js"
+    "test": "node tests/test.js",
+    "start": "node bin/cli.js"
   },
   "keywords": [
     "seo",
@@ -32,15 +33,21 @@
     "url": "https://github.com/krikera/seo-info/issues"
   },
   "dependencies": {
-    "axe-core": "^4.10.2",
-    "axios": "^1.7.9",
-    "chrome-launcher": "^1.1.2",
-    "ejs": "^3.1.10",
-    "jsdom": "^25.0.1",
-    "lighthouse": "^12.2.2",
+    "axe-core": "^4.8.2",
+    "axios": "^1.8.4",
+    "chalk": "^5.4.1",
+    "chrome-launcher": "^0.15.2",
+    "commander": "^13.1.0",
+    "ejs": "^3.1.9",
+    "jsdom": "^22.1.0",
+    "lighthouse": "^11.4.0",
+    "ora": "^8.2.0",
     "path": "^0.12.7",
-    "pdfkit": "^0.16.0",
-    "puppeteer": "^23.8.0",
+    "pdfkit": "^0.14.0",
+    "puppeteer": "^21.6.1",
     "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=14.16.0"
   }
 }

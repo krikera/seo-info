@@ -1,135 +1,178 @@
-# SEO Info
+# SEO-Info Tool
 
-An SEO Analyzer for Single Page Applications (SPAs) that provides comprehensive insights into SEO metrics, accessibility, performance, and best practices.
+A comprehensive SEO analysis tool that helps you identify and fix SEO issues on your website.
 
 ## Features
 
-- **Command-Line Interface (CLI)**: Easily analyze websites directly from the terminal.
-- **API Usage**: Integrate the analyzer into Node.js projects and CI/CD pipelines.
-- **Configurable Settings**: Customize analysis parameters via configuration files or command-line options.
-- **Detailed Reports**: Generate reports in JSON, HTML, or PDF formats.
-- **Accessibility Audit**: Leverage Axe-core for in-depth accessibility analysis.
-- **Performance Metrics**: Use Lighthouse to gather key performance indicators.
-- **CSR/SSR Detection**: Determine if a site uses Client-Side or Server-Side Rendering.
-- **Lazy Loading Detection**: Identify lazy-loaded images and content.
-- **JavaScript Dependency Analysis**: Analyze JS dependencies and their impact on load times.
-- **Error Handling**: Robust error handling for network issues and missing resources.
-- **Savings Report**: Displays analysis statistics such as performance scores and accessibility issues.
-- 
+- **Basic SEO Analysis**: Meta tags, heading structure, links, etc.
+- **Performance Analysis**: Load time, render-blocking resources, etc.
+- **Accessibility Analysis**: WCAG compliance checks
+- **Mobile Friendliness**: Responsive design checks, viewport configuration
+- **Image Optimization**: Large image detection, alt text analysis
+- **Advanced Analysis**:
+  - **Content Analysis**: Readability scores, keyword density, and content structure
+  - **URL Structure Analysis**: URL format, length, parameters, and crawl path
+  - **HTTP Headers Analysis**: Security headers, caching, compression
+  - **Social Media Analysis**: Open Graph, Twitter Cards, social sharing capabilities
+  - **Structured Data Analysis**: JSON-LD and Microdata validation
+
 ## Installation
 
-### Via NPM
-
-Install globally to use the CLI anywhere:
-
 ```bash
-npm install -g seo-info
-```
-### Using NPX 
-
-Run without installation
-
-```bash
-npx seo-info <url> [options]
-```
-### CLI Usage
-
-Analyze a website by providing its URL
-
-```bash
-seo-info <url> [options]
+npm install seo-info
 ```
 
-Example 
+## Quick Start
+
+### Command Line Usage
 
 ```bash
-seo-info https://example.com --format html --output ./reports/example-report
+# Basic usage
+seo-info https://example.com
+
+# Generate HTML report
+seo-info https://example.com --format html --output ./reports/my-report
+
+# Generate PDF report
+seo-info https://example.com --format pdf --output ./reports/my-report
+
+# Analyze with target keywords
+seo-info https://example.com --keywords "seo,analysis,tool"
+
+# Enable verbose output
+seo-info https://example.com --verbose
+
+# Use custom configuration
+seo-info https://example.com --config my-config.json
 ```
-CLI Options:
 
-- `-c, --config`: Path to a configuration file.
-- `-0, --output`: Output path for the report (without extension).
-- `-f, --format`: Format of the generated report (json, html, pdf).
-- `-h, --help`: Display help information.
+### Advanced Analysis Options
 
-### API Usage 
+```bash
+# Include HTTP headers analysis
+seo-info https://example.com --save-headers
 
-Integrate the analyzer into your Node.js projects:
+# Provide additional site URLs for crawl path analysis
+seo-info https://example.com --site-urls "https://example.com/about,https://example.com/contact"
+
+# Set custom thresholds
+seo-info https://example.com --max-image-size 200 --min-words 500 --max-js-size 500
+```
+
+### API Usage
+
+```javascript
+import { analyzeSEO, generateReport } from 'seo-info';
+
+// Fetch HTML content (using fetch, axios, or any method)
+const htmlContent = await fetchHtmlContent('https://example.com');
+
+// Run analysis
+const results = await analyzeSEO(htmlContent, {
+  url: 'https://example.com',
+  targetKeywords: ['seo', 'analysis', 'tool'],
+  advancedAnalysis: true
+});
+
+// Generate report
+const reportPath = await generateReport(results, {
+  format: 'html',
+  outputDir: './reports',
+  filename: 'seo-report'
+});
+
+console.log(`Report saved to: ${reportPath}`);
+```
+
+## Advanced Analysis Example
 
 ```javascript
 import { analyzeSEO } from 'seo-info';
+import axios from 'axios';
 
-(async () => {
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Your SPA</title>
-      <meta name="description" content="Description of your SPA">
-      <!-- Other meta tags -->
-    </head>
-    <body>
-      <!-- Your SPA content -->
-    </body>
-    </html>
-  `;
-  const baseUrl = 'https://example.com'; // Replace with your base URL
-
-  const options = {
-    imageSizeLimit: 200 * 1024, // 200KB
-    timeout: 60000, // 60 seconds
-    reportFormat: 'html',
-    outputPath: './reports/seo-report',
-  };
-
-  try {
-    const seoResults = await analyzeSEO(htmlContent, baseUrl, options);
-    console.log('SEO analysis completed successfully.');
-  } catch (error) {
-    console.error('SEO analysis failed:', error.message);
-  }
-})();
-```
-### Configurations
-
-You can customize the analyzer using a configuration file using .seoinforc. <br> <br>
-Create a .seoinforc file in JSON format in your project's root directory:
-
-```javascript
-{
-  "imageSizeLimit": 150000,
-  "timeout": 60000,
-  "thresholds": {
-    "largeImageSize": 150000,
-    "totalJsSize": 750000,
-    "ssrContentLengthThreshold": 2000,
-    "lazyLoadDelay": 1500
-  },
-  "reportFormat": "html",
-  "outputPath": "./reports/seo-report"
+async function runAnalysis() {
+  // Fetch HTML and headers
+  const response = await axios.get('https://example.com');
+  
+  const results = await analyzeSEO(response.data, {
+    url: 'https://example.com',
+    headers: response.headers,
+    targetKeywords: ['example', 'domain'],
+    siteUrls: [
+      'https://example.com/about',
+      'https://example.com/contact'
+    ],
+    advancedAnalysis: true
+  });
+  
+  // Access advanced analysis results
+  console.log('Content Readability:', results.contentAnalysis.readability.score);
+  console.log('URL Score:', results.urlAnalysis.score);
+  console.log('Social Media Score:', results.socialMediaAnalysis.score);
+  console.log('Security Headers:', results.headersAnalysis.securityAnalysis.score);
+  console.log('Structured Data Types:', results.structuredDataAnalysis.schemaTypes);
 }
 ```
 
-## Output Statistics
+## Configuration
 
-Each compression operation returns statistics such as:
+Create a `.seoinforc` file in your project root:
 
-- Title: The title of the page.
-- Description: Meta description content.
-- Keywords: Meta keywords content.
-- Open Graph Data: Extracted Open Graph tags.
-- Headings: Structure of headings (h1 to h6).
-- Images: Details about images, including alt text and file size.
-- Performance Metrics: Key performance indicators from Lighthouse.
-- Accessibility Issues: Detailed accessibility findings from axe-core.
-- CSR/SSR Detection: Indicates whether the site uses Client-Side or Server-Side Rendering.
-- Lazy Loading Issues: Information about lazy-loaded content.
-- JavaScript Dependencies: Analysis of JS files and their sizes.
+```json
+{
+  "maxImageSize": 100,
+  "minWords": 300,
+  "maxJsSize": 400,
+  "advancedAnalysis": true,
+  "targetKeywords": ["seo", "website", "optimization"]
+}
+```
 
+## Available Analyzers
+
+### Basic Analyzers
+- **HTML Analyzer**: Meta tags, headings, links, images
+- **Performance Analyzer**: Core Web Vitals, resource loading, render-blocking resources
+- **Accessibility Analyzer**: WCAG compliance, ARIA roles, contrast ratios
+
+### Advanced Analyzers
+- **Content Analyzer**: 
+  - Readability scores (Flesch Reading Ease, Flesch-Kincaid Grade Level)
+  - Content structure (paragraph lengths, lists usage)
+  - Keyword density and usage
+  - Content-to-HTML ratio
+  
+- **URL Analyzer**:
+  - URL structure (protocol, domain, path)
+  - Query parameters impact on SEO
+  - Crawl path analysis with other site URLs
+  
+- **Headers Analyzer**:
+  - Security headers (HSTS, CSP, X-Frame-Options)
+  - Caching headers (Cache-Control, ETag)
+  - Content-related headers (Content-Type, Content-Language)
+  - Compression (GZIP, Brotli)
+  
+- **Social Media Analyzer**:
+  - Open Graph meta tags
+  - Twitter Card meta tags
+  - Social media links and presence
+  - Social sharing capabilities
+  
+- **Schema Analyzer**:
+  - JSON-LD structured data validation
+  - Microdata schema validation
+  - Schema.org type detection and recommendations
+
+## Report Formats
+
+- **JSON**: Raw data for programmatic use
+- **HTML**: Interactive HTML report with visualizations
+- **PDF**: Printable PDF report with all analysis results
 
 ## License
 
-This project is licensed under the MIT License.
+MIT
 
 
 
